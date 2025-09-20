@@ -67,6 +67,12 @@
             </div>
         @endif
     </div>
+
+    <div class="mt-4">
+        <a href="{{ route('employer.applications.index') }}" class="btn btn-primary">
+            Apply qilgan nomzodlarni ko‘rish
+        </a>
+    </div>
 @endsection
 
 

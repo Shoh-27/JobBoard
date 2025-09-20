@@ -5,7 +5,8 @@ use App\Http\Controllers\EmployerDashboardController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\JobSearchController;
 use App\Http\Controllers\JobController;
-use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\ApplicationController ;
+use App\Http\Controllers\Employer\ApplicationController as EmployerApplicationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,12 +25,13 @@ Route::middleware(['auth','role:user'])
 
 Route::middleware(['auth','role:employer'])->group(function () {
     Route::resource('jobs', JobController::class);
+    Route::get('/employer/applications', [EmployerApplicationController::class, 'index'])->name('employer.applications.index');
 });
 
 
-Route::middleware(['auth','role:user'])->group(function () {
-    Route::get('/jobs', [JobSearchController::class, 'index'])->name('jobs.index');
-});
+//Route::middleware(['auth','role:user'])->group(function () {
+//    Route::get('/jobs', [JobSearchController::class, 'index'])->name('jobs.index');
+//});
 
 Route::middleware(['auth','role:user'])->group(function () {
     Route::post('/jobs/{job}/apply', [ApplicationController::class, 'store'])->name('jobs.apply');
