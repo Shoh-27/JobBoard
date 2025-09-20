@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployerDashboardController;
 use App\Http\Controllers\UserDashboardController;
+use App\Http\Controllers\JobSearchController;
 use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,12 @@ Route::middleware(['auth','role:user'])
 Route::middleware(['auth','role:employer'])->group(function () {
     Route::resource('jobs', JobController::class);
 });
+
+
+Route::middleware(['auth','role:user'])->group(function () {
+    Route::get('/jobs', [JobSearchController::class, 'index'])->name('jobs.index');
+});
+
 
 //Route::get('/dashboard', function () {
 //    return view('dashboard');
