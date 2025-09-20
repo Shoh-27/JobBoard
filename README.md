@@ -17,7 +17,7 @@ MVP sifatida ishlab chiqilgan ish e’lonlari platformasi.
 ## O‘rnatish
 1. Repository ni klonlash:  
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/Shoh-27/JobBoard.git>
 ## .env faylini sozlash va database ulash
 
 ## Laravel paketlarini o'rnatish
