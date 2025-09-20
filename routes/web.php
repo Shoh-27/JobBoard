@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployerDashboardController;
 use App\Http\Controllers\UserDashboardController;
+use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,6 +19,10 @@ Route::middleware(['auth','role:user'])
     ->get('/user/dashboard', [UserDashboardController::class,'index'])
     ->name('user.dashboard');
 
+
+Route::middleware(['auth','role:employer'])->group(function () {
+    Route::resource('jobs', JobController::class);
+});
 
 //Route::get('/dashboard', function () {
 //    return view('dashboard');
