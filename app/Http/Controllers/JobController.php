@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
+    use AuthorizesRequests;
     public function index()
     {
         $jobs = Job::where('employer_id', auth()->id())->latest()->get();
