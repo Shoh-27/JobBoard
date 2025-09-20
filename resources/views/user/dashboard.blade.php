@@ -44,6 +44,7 @@
         <!-- Link ishlarni qidirish / filter qilish -->
         <div class="mt-4">
             <a href="{{ route('jobs.index') }}" class="btn btn-primary">Ishlarni ko‘rish & Filtrlash</a>
+            <a href="{{ route('applications.index') }}" class="btn btn-secondary">Mening arizalarim</a>
         </div>
     </div>
 @endsection

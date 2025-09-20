@@ -24,8 +24,12 @@
                         <h5>{{ $job->title }} ({{ $job->type }})</h5>
                         <p>{{ Str::limit($job->description, 100) }}</p>
                         <p><strong>Aloqa:</strong> {{ $job->contact_info }}</p>
-                        <form action="mailto:{{ $job->contact_info }}" method="get">
-                            <button class="btn btn-sm btn-success mt-1">Apply</button>
+
+                        <!-- Apply form har bir ish uchun -->
+                        <form action="{{ route('jobs.apply', $job) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="file" name="cv" accept=".pdf,.doc,.docx" class="mb-1">
+                            <button class="btn btn-sm btn-success">Apply</button>
                         </form>
                     </li>
                 @endforeach
@@ -37,4 +41,3 @@
         @endif
     </div>
 @endsection
-
