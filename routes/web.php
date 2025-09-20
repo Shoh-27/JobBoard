@@ -5,6 +5,7 @@ use App\Http\Controllers\EmployerDashboardController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\JobSearchController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\ApplicationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -30,6 +31,10 @@ Route::middleware(['auth','role:user'])->group(function () {
     Route::get('/jobs', [JobSearchController::class, 'index'])->name('jobs.index');
 });
 
+Route::middleware(['auth','role:user'])->group(function () {
+    Route::post('/jobs/{job}/apply', [ApplicationController::class, 'store'])->name('jobs.apply');
+    Route::get('/my-applications', [ApplicationController::class, 'index'])->name('applications.index');
+});
 
 //Route::get('/dashboard', function () {
 //    return view('dashboard');
